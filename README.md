@@ -21,7 +21,8 @@ Content-Type: application/json
 ```
 Ответ:
 
-HTTP/1.1 200 OK
+```HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 
 Move successful
+```
