@@ -11,7 +11,7 @@ POST /api/game
 <h2 align="center">Пример</h2>
 Запрос:
 
-```POST /api/game HTTP/1.1
+{POST /api/game HTTP/1.1
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 
-Move successful
+Move successful}
