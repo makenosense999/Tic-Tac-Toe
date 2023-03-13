@@ -17,11 +17,11 @@ Content-Type: application/json
 {
     "Row": 1,
     "Column": 2
-}```
+}
 
 Ответ:
 
-```HTTP/1.1 200 OK
+HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 
-Move successful```
+Move successful
