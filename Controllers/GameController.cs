@@ -8,20 +8,37 @@ namespace TicTacToe.Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
-        private List<List<Step>> board;
-        private string currentPlayer = "X";
-
+        private static List<List<Step>> board;
+        private static string currentPlayer = "X";
+        private static bool gameEnded = false;
         private void ResetBoard()
         {
-            board = Enumerable.Range(0, 3)
-                .Select(_ => Enumerable.Repeat(new Step(), 3).ToList())
-                .ToList();
-            currentPlayer = "X";
+            board = new List<List<Step>> {
+                new List<Step> { null, null, null },
+                new List<Step> { null, null, null },
+                new List<Step> { null, null, null }
+            };
+                currentPlayer = "X";
         }
 
         [HttpPost]
         public IActionResult Move([FromBody] Move move)
         {
+            if (board == null)
+            {
+                ResetBoard();
+            }
+
+            if (gameEnded)
+            {
+                return BadRequest("Game has already ended.");
+            }
+
+            if (move.Row < 0 || move.Row > 2 || move.Column < 0 || move.Column > 2)
+            {
+                return BadRequest("Invalid move. Row and column values must be between 0 and 2.");
+            }
+
             if (board[move.Row][move.Column] != null)
             {
                 return BadRequest("Invalid move. That spot is already taken.");
@@ -77,7 +94,7 @@ namespace TicTacToe.Controllers
             //COLUMNS
             for (int i = 0; i < 3; i++)
             {
-                Step firstStep = board[i][0];
+                Step firstStep = board[0][i];
 
                 if (firstStep == null)
                 {
@@ -90,6 +107,7 @@ namespace TicTacToe.Controllers
 
                     if (step == null)
                     {
+                        hasWon = false;
 
                         break;
                     }
@@ -115,7 +133,7 @@ namespace TicTacToe.Controllers
             for (int i = 0; i < 2; i++)
             {
                 Step firstStep = board[i][i];
-                Step nextStep = board[i + 1][i + 1];
+                Step nextStep = board[i][i + 1];
 
                 if (firstStep == null)
                 {
@@ -141,7 +159,7 @@ namespace TicTacToe.Controllers
             for (int i = 2; i > 1; i--)
             {
                 Step firstStep = board[i][i];
-                Step nextStep = board[i - 1][i - 1];
+                Step nextStep = board[i][i - 1];
 
                 if (firstStep == null)
                 {
@@ -176,6 +194,28 @@ namespace TicTacToe.Controllers
             else
             {
                 currentPlayer = "X";
+            }
+
+            bool isTie = true;
+            foreach (List<Step> rows in board)
+            {
+                foreach (Step step in rows)
+                {
+                    if (step == null)
+                    {
+                        isTie = false;
+                        break;
+                    }
+                }
+                if (!isTie)
+                {
+                    break;
+                }
+            }
+            if (isTie)
+            {
+                ResetBoard();
+                return Ok("The game ended in a tie.");
             }
 
             string json = JsonSerializer.Serialize(board);
