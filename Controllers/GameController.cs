@@ -10,7 +10,6 @@ namespace TicTacToe.Controllers
     {
         private static List<List<Step>> board;
         private static string currentPlayer = "X";
-        private static bool gameEnded = false;
         private void ResetBoard()
         {
             board = new List<List<Step>> {
@@ -27,11 +26,6 @@ namespace TicTacToe.Controllers
             if (board == null)
             {
                 ResetBoard();
-            }
-
-            if (gameEnded)
-            {
-                return BadRequest("Game has already ended.");
             }
 
             if (move.Row < 0 || move.Row > 2 || move.Column < 0 || move.Column > 2)
@@ -133,15 +127,19 @@ namespace TicTacToe.Controllers
             for (int i = 0; i < 2; i++)
             {
                 Step firstStep = board[i][i];
-                Step nextStep = board[i][i + 1];
+                Step nextStep = board[i + 1][i + 1];
 
                 if (firstStep == null)
                 {
+                    hasWon = false;
+                 
                     break;
                 }
 
                 if (nextStep == null)
                 {
+                    hasWon = false;
+
                     break;
                 }
 
@@ -154,20 +152,30 @@ namespace TicTacToe.Controllers
 
                 hasWon = true;
             }
-
-
-            for (int i = 2; i > 1; i--)
+            
+            if (hasWon)
             {
-                Step firstStep = board[i][i];
-                Step nextStep = board[i][i - 1];
+                ResetBoard();
+                return Ok($"Player {currentPlayer} has won!");
+            }
+
+
+            for (int c = 2, r = 0; c > 0; c--, r++)
+            {
+                Step firstStep = board[r][c];
+                Step nextStep = board[r + 1][c - 1];
 
                 if (firstStep == null)
                 {
+                    hasWon = false;
+
                     break;
                 }
 
                 if (nextStep == null)
                 {
+                    hasWon = false;
+
                     break;
                 }
 
