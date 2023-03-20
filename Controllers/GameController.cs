@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace TicTacToe.Controllers
 {
@@ -8,25 +9,21 @@ namespace TicTacToe.Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
-        private static List<List<Step>> board;
-        private static string currentPlayer = "X";
+        private GameBoard gameBoard = new GameBoard();
+
         private void ResetBoard()
         {
-            board = new List<List<Step>> {
-                new List<Step> { null, null, null },
-                new List<Step> { null, null, null },
-                new List<Step> { null, null, null }
-            };
-                currentPlayer = "X";
+            gameBoard = new GameBoard();
         }
 
         [HttpPost]
         public IActionResult Move([FromBody] Move move)
         {
-            if (board == null)
-            {
-                ResetBoard();
-            }
+            string json = System.Text.Json.JsonSerializer.Serialize(gameBoard);
+            System.IO.File.WriteAllText("data.json", json);
+
+            List<List<Step>> board = gameBoard.board;
+            string currentPlayer = gameBoard.currentPlayer;
 
             if (move.Row < 0 || move.Row > 2 || move.Column < 0 || move.Column > 2)
             {
@@ -226,8 +223,8 @@ namespace TicTacToe.Controllers
                 return Ok("The game ended in a tie.");
             }
 
-            string json = JsonSerializer.Serialize(board);
-            System.IO.File.WriteAllText("data.json", json);
+            json = System.IO.File.ReadAllText("data.json");
+            gameBoard = System.Text.Json.JsonSerializer.Deserialize<GameBoard>(json);
 
             return Ok("Move successful");
 
@@ -237,6 +234,16 @@ namespace TicTacToe.Controllers
     class Step
     {
         public string Player { get; set; }
+    }
+
+    class GameBoard
+    {
+        public List<List<Step>> board = new List<List<Step>> {
+                new List<Step> { null, null, null },
+                new List<Step> { null, null, null },
+                new List<Step> { null, null, null },
+        };
+        public string currentPlayer = "X";
     }
 }
 

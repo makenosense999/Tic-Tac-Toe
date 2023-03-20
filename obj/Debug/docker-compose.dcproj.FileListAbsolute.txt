@@ -1,0 +1,15 @@
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.deps.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.runtimeconfig.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\appsettings.Development.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\appsettings.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\data.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\Microsoft.OpenApi.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.CopyComplete
