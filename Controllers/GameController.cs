@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace TicTacToe.Controllers
 {
@@ -9,8 +8,7 @@ namespace TicTacToe.Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
-        private GameBoard gameBoard = new GameBoard();
-
+        private GameBoard gameBoard;
         private void ResetBoard()
         {
             gameBoard = new GameBoard();
@@ -19,11 +17,27 @@ namespace TicTacToe.Controllers
         [HttpPost]
         public IActionResult Move([FromBody] Move move)
         {
-            string json = System.Text.Json.JsonSerializer.Serialize(gameBoard);
-            System.IO.File.WriteAllText("data.json", json);
+            string currentPlayer = "X";
+            string jsonData;
+            var gameBoard = new GameBoard();
+            if (!System.IO.File.Exists("data.json"))
+            {
+                jsonData = JsonSerializer.Serialize(gameBoard);
+                System.IO.File.WriteAllText("data.json", jsonData);
+            }
+            else
+            {
+                string json = System.IO.File.ReadAllText("data.json");
+                gameBoard = JsonSerializer.Deserialize<GameBoard>(json);
+            }
 
             List<List<Step>> board = gameBoard.board;
-            string currentPlayer = gameBoard.currentPlayer;
+            currentPlayer = gameBoard.currentPlayer;
+
+            if (board == null)
+            {
+                ResetBoard();
+            }
 
             if (move.Row < 0 || move.Row > 2 || move.Column < 0 || move.Column > 2)
             {
@@ -223,11 +237,10 @@ namespace TicTacToe.Controllers
                 return Ok("The game ended in a tie.");
             }
 
-            json = System.IO.File.ReadAllText("data.json");
-            gameBoard = System.Text.Json.JsonSerializer.Deserialize<GameBoard>(json);
+            jsonData = JsonSerializer.Serialize(gameBoard);
+            System.IO.File.WriteAllText("data.json", jsonData);
 
             return Ok("Move successful");
-
         }
     }
 
