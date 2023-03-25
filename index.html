@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>API Documentation</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My API Documentation</title>
   </head>
   <body>
-    <h1>API Documentation</h1>
-    <p>Welcome to the API documentation. To view the API using Swagger, click the link below:</p>
-    <a href="/swagger">View API in Swagger</a>
+    <div id="swagger-ui"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui-dist/4.4.0/swagger-ui-bundle.js"></script>
+    <script>
+      window.onload = function() {
+        SwaggerUIBundle({
+          url: "/swagger/v1/swagger.json",
+          dom_id: "#swagger-ui",
+          deepLinking: true,
+          presets: [SwaggerUIBundle.presets.apis],
+          plugins: [SwaggerUIBundle.plugins.DownloadUrl],
+          layout: "BaseLayout"
+        });
+      };
+    </script>
   </body>
 </html>
