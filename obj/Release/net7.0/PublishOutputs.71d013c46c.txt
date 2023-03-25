@@ -1,0 +1,13 @@
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\TicTacToe.exe
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\appsettings.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\data.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\TicTacToe.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\TicTacToe.deps.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\TicTacToe.runtimeconfig.json
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\TicTacToe.pdb
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
