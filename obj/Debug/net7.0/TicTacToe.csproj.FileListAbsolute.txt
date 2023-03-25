@@ -31,4 +31,3 @@ C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\net7.0\Swas
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\net7.0\TicTacToe.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\net7.0\TicTacToe.csproj.CopyComplete
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\net7.0\data.json

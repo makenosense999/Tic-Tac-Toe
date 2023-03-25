@@ -12,4 +12,3 @@ C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\TicTacToe.p
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\obj\Debug\docker-compose.dcproj.CopyComplete
-C:\Users\Arthur\Desktop\Intern\Intern1\TicTacToe\TicTacToe\bin\Debug\data.json

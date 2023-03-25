@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using Microsoft.Extensions.Logging;
 
 namespace TicTacToe.Controllers
 {
@@ -8,36 +7,21 @@ namespace TicTacToe.Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
-        private GameBoard gameBoard;
-        private void ResetBoard()
-        {
-            gameBoard = new GameBoard();
-        }
-
         [HttpPost]
         public IActionResult Move([FromBody] Move move)
         {
-            string currentPlayer = "X";
-            string jsonData;
             var gameBoard = new GameBoard();
             if (!System.IO.File.Exists("data.json"))
             {
-                jsonData = JsonSerializer.Serialize(gameBoard);
-                System.IO.File.WriteAllText("data.json", jsonData);
+                gameBoard.Save();
             }
             else
             {
-                string json = System.IO.File.ReadAllText("data.json");
-                gameBoard = JsonSerializer.Deserialize<GameBoard>(json);
+                gameBoard = GameBoard.Load();
             }
 
-            List<List<Step>> board = gameBoard.board;
-            currentPlayer = gameBoard.currentPlayer;
-
-            if (board == null)
-            {
-                ResetBoard();
-            }
+            var board = gameBoard.Board;
+            var currentPlayer = gameBoard.CurrentPlayer;
 
             if (move.Row < 0 || move.Row > 2 || move.Column < 0 || move.Column > 2)
             {
@@ -91,7 +75,9 @@ namespace TicTacToe.Controllers
 
                 if (isRowWon)
                 {
-                    ResetBoard();
+                    gameBoard.ResetBoard();
+                    gameBoard.Save();
+
                     return Ok($"Player {currentPlayer} has won!");
                 }
             }
@@ -129,7 +115,9 @@ namespace TicTacToe.Controllers
 
                 if (hasWon)
                 {
-                    ResetBoard();
+                    gameBoard.ResetBoard();
+                    gameBoard.Save();
+
                     return Ok($"Player {currentPlayer} has won!");
                 }
             }
@@ -166,7 +154,9 @@ namespace TicTacToe.Controllers
             
             if (hasWon)
             {
-                ResetBoard();
+                gameBoard.ResetBoard();
+                gameBoard.Save();
+
                 return Ok($"Player {currentPlayer} has won!");
             }
 
@@ -202,17 +192,10 @@ namespace TicTacToe.Controllers
 
             if (hasWon)
             {
-                ResetBoard();
-                return Ok($"Player {currentPlayer} has won!");
-            }
+                gameBoard.ResetBoard();
+                gameBoard.Save();
 
-            if (currentPlayer == "X")
-            {
-                currentPlayer = "O";
-            }
-            else
-            {
-                currentPlayer = "X";
+                return Ok($"Player {currentPlayer} has won!");
             }
 
             bool isTie = true;
@@ -233,12 +216,14 @@ namespace TicTacToe.Controllers
             }
             if (isTie)
             {
-                ResetBoard();
+                gameBoard.ResetBoard();
+                gameBoard.Save();
+
                 return Ok("The game ended in a tie.");
             }
 
-            jsonData = JsonSerializer.Serialize(gameBoard);
-            System.IO.File.WriteAllText("data.json", jsonData);
+            gameBoard.SwitchPlayer();
+            gameBoard.Save();
 
             return Ok("Move successful");
         }
@@ -251,12 +236,50 @@ namespace TicTacToe.Controllers
 
     class GameBoard
     {
-        public List<List<Step>> board = new List<List<Step>> {
+        public GameBoard()
+        {
+            ResetBoard();
+        }
+
+
+        public List<List<Step>> Board { get; set; }
+        public string CurrentPlayer { get; set; } 
+
+
+        public void ResetBoard()
+        {
+            Board = new List<List<Step>> {
                 new List<Step> { null, null, null },
                 new List<Step> { null, null, null },
                 new List<Step> { null, null, null },
-        };
-        public string currentPlayer = "X";
+            };
+            CurrentPlayer = "X";
+        }
+
+        public void SwitchPlayer()
+        {
+            if (CurrentPlayer == "X")
+            {
+                CurrentPlayer = "O";
+            }
+            else
+            {
+                CurrentPlayer = "X";
+            }
+        }
+
+        public void Save()
+        {
+            var newJsonData = JsonSerializer.Serialize(this);
+            File.WriteAllText("data.json", newJsonData);
+        }
+
+        public static GameBoard Load()
+        {
+            string json = File.ReadAllText("data.json");
+            
+            return JsonSerializer.Deserialize<GameBoard>(json);
+        }
     }
 }
 
