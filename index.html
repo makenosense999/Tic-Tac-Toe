@@ -1,47 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Swagger UI</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.1/swagger-ui.min.css">
-    <style>
-        html {
-            box-sizing: border-box;
-            overflow: -moz-scrollbars-vertical;
-            overflow-y: scroll;
-        }
-
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
-
-        body {
-            margin: 0;
-            background: #fafafa;
-        }
-
-        .swagger-ui {
-            min-height: calc(100vh - 40px);
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.50.0/swagger-ui.min.css">
 </head>
 <body>
     <div id="swagger-ui"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.1/swagger-ui-bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.1/swagger-ui-standalone-preset.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.50.0/swagger-ui-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.50.0/swagger-ui-standalone-preset.js"></script>
     <script>
         window.onload = function () {
             const ui = SwaggerUIBundle({
-                url: "/swagger/v1/swagger.json",
+                url: "./swagger/v1/swagger.json",
                 dom_id: '#swagger-ui',
                 presets: [
                     SwaggerUIBundle.presets.apis,
                     SwaggerUIStandalonePreset
                 ],
-                layout: "StandaloneLayout"
+                layout: "BaseLayout"
             });
         }
     </script>
